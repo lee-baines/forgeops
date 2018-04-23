@@ -3,7 +3,7 @@ RELEASE_NAME=forgerock
 KUBE_CONTEXT=eng-shared
 NAMESPACE=lee
 CHART_REPO_URL=https://helmrepo.codefresh.io/codefresh/helm
-CUSTOMFILE_test='commons_test.yaml'
+CUSTOMFILE_test='ci-test-values.yaml'
 
 ---
 version: '1.0'
