@@ -1,0 +1,23 @@
+CHART_NAME=test
+RELEASE_NAME=forgerock
+KUBE_CONTEXT=eng-shared
+NAMESPACE=lee
+CHART_REPO_URL=https://helmrepo.codefresh.io/codefresh/helm
+CUSTOMFILE_test='commons_test.yaml'
+
+---
+version: '1.0'
+
+steps:
+
+  Helm Upgrade:
+    title: Helm Upgrade
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME=$
+      - RELEASE_NAME=$
+      - KUBE_CONTEXT=$
+      - NAMESPACE=$
+      - DEBUG_CHART=$
+      - CHART_REPO_URL=$
+    
