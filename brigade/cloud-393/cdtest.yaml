@@ -1,0 +1,11 @@
+project: "lee-baines/forgeops"
+repository: "github.com/lee-baines/forgeops"
+cloneURL: "https://github.com/lee-baines/forgeops.git"
+# Used by GitHub to compute hooks.
+# MAKE SURE YOU CHANGE THIS. It's basically a password.
+sharedSecret: "secret_project"
+# Use this to have Brigade update your project about the build.
+# You probably want this if you want pull requests or commits to show
+# the build status.
+github:
+  token: "1cd593943286348de22cc3e789b202279771988c"
