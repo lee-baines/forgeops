@@ -1,4 +1,4 @@
-### test ci example
+// test ci example
 const { events, Job, Group } = require('brigadier')
 
 const helmTag = "v2.8.2"
