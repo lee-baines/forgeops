@@ -8,4 +8,4 @@ sharedSecret: "secret_project"
 # You probably want this if you want pull requests or commits to show
 # the build status.
 github:
-  token: "93e9228c311d01739767f6f1d93cc5b78e1cfbeb"
+  token: "7c3f3dc853020737deff020961763198f730a8c1"
