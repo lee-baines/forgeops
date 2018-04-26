@@ -2,15 +2,51 @@ version: '1.0'
 
 steps:
 
-  Helm Upgrade:
-    title: Helm Upgrade
+  Helm Upgrade - Amster:
+    title: Helm Upgrade Amster
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
-      - CHART_NAME=$
+      - CHART_NAME_amster=$
       - RELEASE_NAME=$
       - KUBE_CONTEXT=$
       - NAMESPACE=$
       - DEBUG_CHART=$
       - CHART_REPO_URL=$
-      - CUSTOMFILE_test=$
+      - CUSTOMFILE_amster=$
+      
+  Helm Upgrade - OpenAM:
+    title: Helm Upgrade OpenAM
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME_openam=$
+      - RELEASE_NAME=$
+      - KUBE_CONTEXT=$
+      - NAMESPACE=$
+      - DEBUG_CHART=$
+      - CHART_REPO_URL=$
+      - CUSTOMFILE_openam=$
+      
+  Helm Upgrade OpenDJ - Config:
+    title: Helm Upgrade OpenDJ - Config
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME_opendj=$
+      - RELEASE_NAME=$
+      - KUBE_CONTEXT=$
+      - NAMESPACE=$
+      - DEBUG_CHART=$
+      - CHART_REPO_URL=$
+      - CUSTOMFILE_opendj_config=$
+
+  Helm Upgrade OpenDJ - CTS:
+    title: Helm Upgrade OpenDJ - CTS
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME_opendj=$
+      - RELEASE_NAME=$
+      - KUBE_CONTEXT=$
+      - NAMESPACE=$
+      - DEBUG_CHART=$
+      - CHART_REPO_URL=$
+      - CUSTOMFILE_opendj_cts=$
     
