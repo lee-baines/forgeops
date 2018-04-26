@@ -10,7 +10,7 @@ steps:
     environment:
       - CHART_NAME=helm/amster
       - RELEASE_NAME=amster
-      - KUBE_CONTEXT=$
+      - KUBE_CONTEXT=eng-shared@@EngineeringDevOps
       - NAMESPACE=lee
       - CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
       - CUSTOMFILE_amster='codefresh/amster_values.yaml'
