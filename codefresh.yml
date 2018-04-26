@@ -11,7 +11,7 @@ steps:
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
       #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
-      - CUSTOMFILE_amster=$
+      - CUSTOMFILE_amster=${{CUSTOMFILE_amster}}
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
