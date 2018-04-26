@@ -16,7 +16,7 @@ steps:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
       - helm init
-      - helm upgrade -i amster ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOM_FILE_amster}
+      - helm upgrade -i amster ${CHART_NAME} --namespace ${NAMESPACE} --values helm/amster_values.yaml
     fail_fast: false
   
   #Helm_Upgrade_Amster:
