@@ -6,7 +6,7 @@ steps:
     title: Helm Upgrade Amster
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
-      - CHART_NAME=amster
+      - CHART_NAME=$
       - RELEASE_NAME=$
       - KUBE_CONTEXT=$
       - NAMESPACE=$
