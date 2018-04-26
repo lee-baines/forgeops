@@ -2,21 +2,21 @@ version: '1.0'
 
 steps:
   
-  KubernetesDeployment:
+  KubernetesDeploymentAmster:
     title: Helm Upgrade Amster
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
-      - CHART_NAME=${{CHARTNAME_amster}}
-      - RELEASE_NAME=amster
-      - KUBE_CONTEXT=eng-shared@EngineeringDevOps
-      - NAMESPACE=lee
-      - CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
-      - CUSTOM_FILE_amster=${{CUSTOM_FILE_amster}}git 
+      - CHART_NAME=${{CHART_NAME_amster}}
+      - RELEASE_NAME=${{RELEASE_NAME}}
+      - KUBE_CONTEXT=${{KUBE_CONTEXT}}
+      - NAMESPACE=${{NAMESPACE}}
+      #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
+      - CUSTOMFILE_amster=${{CUSTOM_FILE_amster}}
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
       - helm init
-      - helm upgrade -i amster ${CHART_NAME} --namespace ${NAMESPACE} --values helm/amster_values.yaml
+      - helm upgrade -i ${RELEASE_NAME} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
     fail_fast: false
   
   #Helm_Upgrade_Amster:
