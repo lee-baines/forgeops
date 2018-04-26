@@ -11,7 +11,7 @@ steps:
       - KUBE_CONTEXT=eng-shared@EngineeringDevOps
       - NAMESPACE=lee
       - CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
-      - CUSTOMFILE_amster='codefresh/amster_values.yaml'
+      - CUSTOM_FILE_amster='codefresh/amster_values.yaml'
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
