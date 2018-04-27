@@ -23,7 +23,8 @@ steps:
       - cp kubeval /usr/local/bin
       - helm init --client-only
       - kubectl version --client
-      - helm template helm/amster #| kubeval
+      - kubeval --version
+      - helm template helm/amster | kubeval
       #- helm template helm/openam | kubeval
       #- helm template helm/opendj | kubeval
   
