@@ -6,6 +6,7 @@ steps:
     title: Validate Helm Charts with Helm lint
     image: 'codefresh/plugin-helm:2.8.2'
     commands:
+      - helm init --client-only
       - cd helm
       - ./update-deps.sh
       - helm lint frcommon
@@ -27,7 +28,7 @@ steps:
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
-      - helm init
+      - helm init --client-only
       - helm upgrade -i ${RELEASE_NAME_amster} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
     fail_fast: false
 
@@ -44,7 +45,7 @@ steps:
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
-      - helm init
+      - helm init --client-only
       - cd helm
       - ./update-deps.sh
       - cd ../
@@ -64,7 +65,7 @@ steps:
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
-      - helm init
+      - helm init --client-only
       - cd helm
       - ./update-deps.sh
       - cd ../
@@ -84,7 +85,7 @@ steps:
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
-      - helm init
+      - helm init --client-only
       - cd helm
       - ./update-deps.sh
       - cd ../
