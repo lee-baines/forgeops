@@ -38,6 +38,46 @@ steps:
       - cd ../
       - helm upgrade -i ${RELEASE_NAME_openam} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_am}
     fail_fast: false
+    
+  KubernetesDeploymentDSConfig:
+    title: Helm Upgrade DS Config
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME=${{CHART_NAME_dsconfig}}
+      - RELEASE_NAME_dsconfig=${{RELEASE_NAME_dsconfig}}
+      - KUBE_CONTEXT=${{KUBE_CONTEXT}}
+      - NAMESPACE=${{NAMESPACE}}
+      #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
+      - CUSTOMFILE_dsconfig=${{CUSTOMFILE_dsconfig}}
+    commands:
+      - cf_export KUBE_CONTEXT
+      - kubectl config use-context ${KUBE_CONTEXT}
+      - helm init
+      - cd helm
+      - ./update-deps.sh
+      - cd ../
+      - helm upgrade -i ${RELEASE_NAME_dsconfig} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_dsconfig}
+    fail_fast: false  
+    
+  KubernetesDeploymentDSCTS:
+    title: Helm Upgrade DS CTS
+    image: 'codefresh/plugin-helm:2.8.2'
+    environment:
+      - CHART_NAME=${{CHART_NAME_dscts}}
+      - RELEASE_NAME_dscts=${{RELEASE_NAME_dscts}}
+      - KUBE_CONTEXT=${{KUBE_CONTEXT}}
+      - NAMESPACE=${{NAMESPACE}}
+      #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
+      - CUSTOMFILE_dscts=${{CUSTOMFILE_dscts}}
+    commands:
+      - cf_export KUBE_CONTEXT
+      - kubectl config use-context ${KUBE_CONTEXT}
+      - helm init
+      - cd helm
+      - ./update-deps.sh
+      - cd ../
+      - helm upgrade -i ${RELEASE_NAME_dscts} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_dscts}
+    fail_fast: false  
   
   #Helm_Upgrade_Amster:
   #  title: Helm Upgrade Amster
