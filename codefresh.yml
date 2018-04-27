@@ -7,7 +7,7 @@ steps:
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
       - CHART_NAME=${{CHART_NAME_amster}}
-      - RELEASE_NAME=${{RELEASE_NAME}}
+      - RELEASE_NAME_amster=${{RELEASE_NAME_amster}}
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
       #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
@@ -16,7 +16,7 @@ steps:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
       - helm init
-      - helm upgrade -i ${RELEASE_NAME} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
+      - helm upgrade -i ${RELEASE_NAME_amster} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
     fail_fast: false
 
   KubernetesDeploymentAM:
@@ -24,11 +24,11 @@ steps:
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
       - CHART_NAME=${{CHART_NAME_openam}}
-      - RELEASE_NAME=${{RELEASE_NAME_openam}}
+      - RELEASE_NAME_openam=${{RELEASE_NAME_openam}}
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
       #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
-      - CUSTOMFILE_amster=${{CUSTOMFILE_openam}}
+      - CUSTOMFILE_am=${{CUSTOMFILE_openam}}
     commands:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
@@ -36,7 +36,7 @@ steps:
       - cd helm
       - ./update-deps.sh
       - cd ../
-      - helm upgrade -i ${RELEASE_NAME} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
+      - helm upgrade -i ${RELEASE_NAME_openam} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_am}
     fail_fast: false
   
   #Helm_Upgrade_Amster:
