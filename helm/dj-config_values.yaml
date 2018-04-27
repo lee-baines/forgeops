@@ -40,11 +40,8 @@ global:
   # The CN of the certificate *MUST* match the FQDN.
   useTLS: false
 
-
-  # Child Chart overrides
-configstore:
-  djInstance: configstore
-  replicas: 1
-  image:
-    tag: latest
+djInstance: configstore
+replicas: 1
+image:
+  tag: latest
 
