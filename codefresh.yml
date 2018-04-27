@@ -13,7 +13,6 @@ steps:
       - helm lint amster
       - helm lint openam
       - helm lint opendj
-    fail_fast: true
   
   ValidateKubernetesTemplates:
     title: Validate Kubernetes templates with kubeval
@@ -23,10 +22,10 @@ steps:
       - tar xf kubeval-darwin-amd64.tar.gz
       - cp kubeval /usr/local/bin
       - helm init --client-only
-      - helm template helm/amster | kubeval
-      - helm template helm/openam | kubeval
-      - helm template helm/opendj | kubeval
-    fail_fast: true
+      - kubectl version
+      - helm template helm/amster #| kubeval
+      #- helm template helm/openam | kubeval
+      #- helm template helm/opendj | kubeval
   
   KubernetesDeploymentAmster:
     title: Helm Upgrade Amster
