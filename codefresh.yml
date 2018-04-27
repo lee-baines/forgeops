@@ -33,6 +33,7 @@ steps:
       - cf_export KUBE_CONTEXT
       - kubectl config use-context ${KUBE_CONTEXT}
       - helm init
+      - ./helm/update-deps.sh
       - helm upgrade -i ${RELEASE_NAME} ${CHART_NAME} --namespace ${NAMESPACE} --values ${CUSTOMFILE_amster}
     fail_fast: false
   
