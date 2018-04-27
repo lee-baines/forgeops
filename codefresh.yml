@@ -43,7 +43,7 @@ steps:
     title: Helm Upgrade DS Config
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
-      - CHART_NAME=${{CHART_NAME_dsconfig}}
+      - CHART_NAME=${{CHART_NAME_ds}}
       - RELEASE_NAME_dsconfig=${{RELEASE_NAME_dsconfig}}
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
@@ -63,7 +63,7 @@ steps:
     title: Helm Upgrade DS CTS
     image: 'codefresh/plugin-helm:2.8.2'
     environment:
-      - CHART_NAME=${{CHART_NAME_dscts}}
+      - CHART_NAME=${{CHART_NAME_ds}}
       - RELEASE_NAME_dscts=${{RELEASE_NAME_dscts}}
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
