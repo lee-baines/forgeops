@@ -2,6 +2,16 @@ version: '1.0'
 
 steps:
   
+  ValidateCharts:
+    title: Validate Helm Charts with Helm lint
+    image: 'codefresh/plugin-helm:2.8.2'
+    commands:
+      - helm lint helm/frcommon
+      - helm lint helm/amster
+      - helm lint helm/openam
+      - helm lint helm/opendj
+    fail_fast: false
+  
   KubernetesDeploymentAmster:
     title: Helm Upgrade Amster
     image: 'codefresh/plugin-helm:2.8.2'
