@@ -15,6 +15,19 @@ steps:
       - helm lint opendj
     fail_fast: true
   
+  ValidateKubernetesTemplates:
+    title: Validate Kubernetes templates with kubeval
+    image: ''
+    commands:
+      - wget https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-darwin-amd64.tar.gz
+      - tar xf kubeval-darwin-amd64.tar.gz
+      - cp kubeval /usr/local/bin
+      - helm init --client-only
+      - helm template helm/amster | kubeval
+      - helm template helm/openam | kubeval
+      - helm template helm/opendj | kubeval
+    fail_fast: true
+  
   KubernetesDeploymentAmster:
     title: Helm Upgrade Amster
     image: 'codefresh/plugin-helm:2.8.2'
