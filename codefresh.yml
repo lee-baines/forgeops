@@ -17,7 +17,7 @@ steps:
   
   ValidateKubernetesTemplates:
     title: Validate Kubernetes templates with kubeval
-    image: ''
+    image: 'codefresh/plugin-helm:2.8.2'
     commands:
       - wget https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-darwin-amd64.tar.gz
       - tar xf kubeval-darwin-amd64.tar.gz
