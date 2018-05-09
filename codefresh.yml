@@ -14,17 +14,17 @@ steps:
       - helm lint openam
       - helm lint opendj
   
-  ValidateKubernetesTemplates:
-    title: Validate Kubernetes templates with kubeval
-    image: 'codefresh/plugin-helm:2.8.2'
-    commands:
-      - wget https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-darwin-amd64.tar.gz
-      - tar xf kubeval-darwin-amd64.tar.gz
-      - cp kubeval /usr/local/bin
-      - echo $PATH
-      - helm init --client-only
-      - kubectl version --client
-      - kubeval --version
+  #ValidateKubernetesTemplates:
+  #  title: Validate Kubernetes templates with kubeval
+  #  image: 'codefresh/plugin-helm:2.8.2'
+  #  commands:
+  #    - wget https://github.com/garethr/kubeval/releases/download/0.6.0/kubeval-darwin-amd64.tar.gz
+  #    - tar xf kubeval-darwin-amd64.tar.gz
+  #    - cp kubeval /usr/local/bin
+  #    - echo $PATH
+  #    - helm init --client-only
+  #    - kubectl version --client
+  #    - kubeval --version
       #- helm template helm/amster | kubeval
       #- helm template helm/openam | kubeval
       #- helm template helm/opendj | kubeval
