@@ -37,6 +37,7 @@ steps:
       - RELEASE_NAME_amster=${{RELEASE_NAME_amster}}
       - KUBE_CONTEXT=${{KUBE_CONTEXT}}
       - NAMESPACE=${{NAMESPACE}}
+      # test
       #- CHART_REPO_URL=https://storage.googleapis.com/forgerock-charts/
       - CUSTOMFILE_amster=${{CUSTOMFILE_amster}}
     commands:
