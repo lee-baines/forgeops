@@ -21,11 +21,11 @@ Scripts:
 * **bin/format-grafana-dashboards.sh**: script to format Grafana dashboards to be included in the deployment.
   
 Values files:
-* ***etc/prometheus-values/kube-prometheus.yaml***: override values for kube-prometheus Helm chart. Here you can configure Prometheus and Alertmanager as well as define which Kubernetes you would like monitored.
-* ***etc/prometheus-values/prometheus-operator.yaml***: override values for Prometheus Operator.  Main use so far is to configure the image version.
-  
-Grafana auto import.
-* ***docker/auto-import*** folder which provides a Dockerfile for producing the docker image used by the import-dashboards job.
+* ***etc/prometheus-values/prometheus-operator.yaml***: override values for Prometheus Operator. 
+* ***etc/prometheus-values/kube-prometheus.yaml***: override values for kube-prometheus Helm chart. Here you can configure Prometheus  
+and Alertmanager as well as define which Kubernetes you would like monitored.  These values are the default values used in ```bin/deploy-prometheus.yaml```.
+* ***samples/config/prometheus-values/\<custom-values\>.yaml***: additional values used to define cluster specific configuration.  
+Use the -k flag with ```bin/deploy-prometheus.yaml```.
 
 <br />
 
@@ -86,7 +86,8 @@ A PrometheusRules CRD has been included in the Helm chart which includes the fr-
 
 Run the deploy script ```./deploy-prometheus.sh``` with the OPTIONAL flags:
 * -n *namespace* \[optional\] : to deploy Prometheus into.  Default = monitoring.
-* -f *values file* \[optional\] : absolute path to yaml file as defined in previous section.
+* -f *foregrock-metrics values file* \[optional\] : absolute path to yaml file to override ```helm/forgerock-metrics/values.yaml```.
+* -k *kube-prometheus values file* \[optional\] : absolute path to yaml file to override ```etc/prometheus-values/kube-prometheus.yaml```.
 * -h / no flags : view help
 
 ### View Prometheus/Grafana
