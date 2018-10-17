@@ -10,9 +10,13 @@ Alertmanager configuration: [Config](https://prometheus.io/docs/alerting/configu
 **Prometheus solution comprises of the following artifacts:**  
 
 Helm charts:
-* ***prometheus-operator*** which creates custom resources which makes the Prometheus deployment native to Kubernetes and configuration through Kubernetes manifests.
-* ***kube-prometheus*** which contains multiple subcharts including Prometheus, Grafana and Alertmanager and other Helm charts that monitor GKE.
-* ***forgerock-metrics***  provides configurable ServiceMonitors, alerting rules and a job to automatically import Grafana dashboards for ForgeRock products.  ServiceMonitors define the ForgeRock Identity Platform component endpoints that are monitored by Prometheus.
+* ***prometheus-operator*** which creates custom resources which makes the Prometheus deployment native  
+to Kubernetes and configuration through Kubernetes manifests.
+* ***kube-prometheus*** which contains multiple subcharts including Prometheus, Grafana and Alertmanager  
+and other Helm charts that monitor GKE.
+* ***forgerock-metrics***  provides configurable ServiceMonitors, alerting rules and a job to automatically  
+import Grafana dashboards for ForgeRock products.  ServiceMonitors define the ForgeRock Identity Platform  
+component endpoints that are monitored by Prometheus.
 
 Scripts:
 * **bin/deploy-prometheus.sh**: deploys the Helm charts mentioned above:
@@ -22,32 +26,44 @@ Scripts:
   
 Values files:
 * ***etc/prometheus-values/prometheus-operator.yaml***: override values for Prometheus Operator. 
-* ***etc/prometheus-values/kube-prometheus.yaml***: override values for kube-prometheus Helm chart. Here you can configure Prometheus  
-and Alertmanager as well as define which Kubernetes you would like monitored.  These values are the default values used in ```bin/deploy-prometheus.yaml```.
-* ***samples/config/prometheus-values/\<custom-values\>.yaml***: additional values used to define cluster specific configuration.  
-Use the -k flag with ```bin/deploy-prometheus.yaml```.
+* ***etc/prometheus-values/kube-prometheus.yaml***: override values for kube-prometheus Helm chart. Here you can  
+configure Prometheus and Alertmanager as well as define which Kubernetes you would like monitored.  These values  
+are the default values used in ```bin/deploy-prometheus.yaml```.
+* ***samples/config/prometheus-values/\<custom-values\>.yaml***: additional values used to define cluster specific  
+configuration.  Use the -k flag with ```bin/deploy-prometheus.yaml```.
 
 <br />
 
-# How Prometheus works
+# How Prometheus Operator works
 
-The Prometheus Operator works by watching for ServiceMonitor CRDs (CRDs are Kubernetes Custom Resource Definitions). These are first  
-class Kubernetes types that you can manage with kubectl (kubectl create/delete/patch, etc.).  The ServiceMonitor CRDs define the target to be scraped.
+Prometheus Operator creates, configures, and manages Prometheus monitoring instances. The Prometheus Operator works  
+by watching for ServiceMonitor CRDs (CRDs are Kubernetes Custom Resource Definitions). These are first class Kubernetes  
+types that you can manage with kubectl (kubectl create/delete/patch, etc.).  The ServiceMonitor CRDs define the target to  
+be scraped.
 
-The Prometheus Operator watches for changes to current or new ServiceMonitors and updates the Prometheus configuration with the details  
-defined in the ServiceMonitors automatically.  
+The Prometheus Operator watches for changes to current or new ServiceMonitors and updates the Prometheus configuration  
+with the details defined in the ServiceMonitors automatically.  
 
 No restarting of Prometheus is required.
 
 <br />
 
+# How Prometheus works
+
+The Prometheus Helm chart is deployed as part of the kube-prometheus Helm chart.  The Prometheus scrape configuration is  
+generated and updated automatically by the Prometheus Operater as discribed above.  Prometheus uses it's own config watcher  
+to look for updated confiurations.
+
+<br />
+
 # How Grafana works
 
-The Grafana Helm chart is deployed as part of the kube-prometheus chart.  Grafana automatically connects to Prometheus and syncs all  
-the metrics which are visible through Graphs.  
+The Grafana Helm chart is deployed as part of the kube-prometheus Helm chart.  Grafana automatically connects to Prometheus  
+and syncs all the metrics which are visible through Graphs.  
 
-Dashboards for ForgeRock products are added to the helm/forgerock-metrics/dashboards folder.  Any new dashboards must be formatted.
-using the script ```bin/format-grafana-dashboards.sh```.  The dashboards are automatically added to a configmap and imported into Grafana.  For more info, see 'Import Custom Grafana Dashboards' in the 'How Tos' section below.
+Dashboards for ForgeRock products are added to the helm/forgerock-metrics/dashboards folder.  Any new dashboards must be  
+formatted using the script ```bin/format-grafana-dashboards.sh```.  The dashboards are automatically added to a configmap  
+and imported into Grafana.  For more info, see 'Import Custom Grafana Dashboards' in the 'How Tos' section below.
 
 <br />
 
@@ -62,7 +78,8 @@ Currently we're sending all alerts to a Slack receiver.
 * receivers section defines named configurations of notification integrations.
 
 Prometheus alerts are configured, by product, in the ```helm/forgerock-metrics/fr-alerts.yaml``` file.  
-A PrometheusRules CRD has been included in the Helm chart which includes the fr-alerts.yaml file and syncs the rules with Prometheus using labels.
+A PrometheusRules CRD has been included in the Helm chart which includes the fr-alerts.yaml file and syncs the rules with  
+Prometheus using labels.
 
 # Deployment instructions
 ### Pre-requisites
