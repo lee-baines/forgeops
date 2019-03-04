@@ -60,7 +60,7 @@ benchmark:
   # How many user threads we want to use for benchmark
   concurrency: 5
   # Duration of test in seconds
-  duration: 20
+  duration: 5
   # Logout percent in authn testnames(0 disables logout)
   logoutpercent: 0
   # Warmup duration
@@ -76,7 +76,7 @@ benchmark:
   #
   # am_context: "/am"
   # idm_context: ""
-  # ig_context: ""
+  ig_context: ""
 
   # Product specific values that are passed into gatling.
   # Will likely to expand in future to cover all 4 products.
@@ -107,4 +107,4 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: "/"
+    #nginx.ingress.kubernetes.io/rewrite-target: "/"

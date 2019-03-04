@@ -68,17 +68,17 @@ spec:
         - name: git
           mountPath: /git
         {{ end }}
-        livenessProbe:
-          httpGet:
-           path: {{ .Values.healthURI }}
-           port: {{ .Values.service.internalPort }}
-          timeoutSeconds: 10
-          periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: {{ .Values.readinessURI }}
-            port: {{ .Values.service.internalPort }}
-          initialDelaySeconds: 5
+#        livenessProbe:
+#          httpGet:
+#           path: {{ .Values.healthURI }}
+#           port: {{ .Values.service.internalPort }}
+#          timeoutSeconds: 10
+#          periodSeconds: 30
+#        readinessProbe:
+#          httpGet:
+#            path: {{ .Values.readinessURI }}
+#            port: {{ .Values.service.internalPort }}
+#          initialDelaySeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       # audit logging containers

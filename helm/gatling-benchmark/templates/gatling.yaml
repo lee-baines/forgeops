@@ -58,9 +58,9 @@ spec:
             -Doauth2_client_id={{ .Values.benchmark.oauth2_client_id }}
             -Doauth2_client_pw={{ .Values.benchmark.oauth2_client_pw }}
             '
-            -g '-m -s TESTNAME -rd TESTNAME' &&
+            -g '-m -s TESTNAME -rd TESTNAME'
             export FN=$(ls -t /opt/gatling/results | head -1) && tar -czvf /opt/gatling/results/$FN.tar.gz
-            /opt/gatling/results/$FN
+            /opt/gatling/results/$FN && cp -a /opt/gatling/results/
         volumeMounts:
           - name: gatling-results
             mountPath: "/opt/gatling/results"
